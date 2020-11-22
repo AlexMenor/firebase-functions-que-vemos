@@ -1,3 +1,4 @@
+const { VALID_MEMORY_OPTIONS } = require("firebase-functions");
 const functions = require("firebase-functions");
 const https = require("https");
 const badWords = require("./bad-words");
@@ -27,7 +28,9 @@ exports.sendFeedback = functions.https.onRequest((request, response) => {
 function sendMsgToTelegram(msg) {
   return new Promise((resolve, reject) => {
     https.get(
-      `https://api.telegram.org/bot${process.env.TELEGRAM_BOT_KEY}/sendMessage?chat_id=${CHANNEL_NAME}&text=${msg}`,
+      `https://api.telegram.org/bot${
+        functions.config()["que-vemos"].telegram
+      }/sendMessage?chat_id=${CHANNEL_NAME}&text=${msg}`,
       (response) => {
         if (response.statusCode !== 200) {
           functions.logger.log(response);
