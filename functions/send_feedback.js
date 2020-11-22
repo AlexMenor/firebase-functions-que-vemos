@@ -1,6 +1,6 @@
 const functions = require("firebase-functions");
 const https = require("https");
-const badWords = require("../bad-words");
+const badWords = require("./bad-words");
 
 const CHANNEL_NAME = "@sugerenciasQueVemos";
 

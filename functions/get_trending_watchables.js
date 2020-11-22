@@ -1,5 +1,5 @@
 const functions = require("firebase-functions");
-const watchables = require("../serialized_data.json");
+const watchables = require("./serialized_data.json");
 
 exports.getTrendingWatchables = functions.https.onRequest(
   (request, response) => {
