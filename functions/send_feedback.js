@@ -29,8 +29,10 @@ function sendMsgToTelegram(msg) {
     https.get(
       `https://api.telegram.org/bot${process.env.TELEGRAM_BOT_KEY}/sendMessage?chat_id=${CHANNEL_NAME}&text=${msg}`,
       (response) => {
-        if (response.statusCode !== 200) reject(new Error());
-        else resolve();
+        if (response.statusCode !== 200) {
+          functions.logger.log(response);
+          reject(new Error());
+        } else resolve();
       }
     );
   });
