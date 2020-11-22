@@ -7,8 +7,8 @@ exports.getTrendingWatchables = functions.https.onRequest(
 
     const { type, search, orderBy } = request.query;
 
-    if (type == "MOVIE" || type == "SERIES")
-      result = result.filter((watchable) => watchable.type == type);
+    if (type === "MOVIE" || type === "SERIES")
+      result = result.filter((watchable) => watchable.type === type);
 
     if (search)
       result = result.filter(
@@ -19,7 +19,7 @@ exports.getTrendingWatchables = functions.https.onRequest(
     if (orderBy) {
       const [field, order] = orderBy.split(",");
 
-      if (order == "ASC") result.sort((a, b) => a[field] - b[field]);
+      if (order === "ASC") result.sort((a, b) => a[field] - b[field]);
       else result.sort((a, b) => b[field] - a[field]);
     }
 
